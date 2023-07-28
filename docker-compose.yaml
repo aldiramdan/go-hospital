@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aldiramdan/go_hospitalnative:1.0.0
+    container_name: go_hospitalnative
+    env_file:
+      - .env
+    tty: true
+    ports:
+      - '8071:8070'
+    restart: on-failure
+    networks:
+      - godev
+
+# Networks to be created to facilitate communication between containers
+networks:
+  godev:
+    driver: bridge
